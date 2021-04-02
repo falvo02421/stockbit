@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      function anagramsArray() {
+        let arr = ["kita", "atik", "tika", "aku", "makan", "kua"];
+        let resultArr = [];
+        for (let i = 0; i < arr.length; i++) {
+          let hashSort = wordFilter(arr[i]);
+          let finRes = [];
+          finRes.push(arr[i]);
+          for (let j = i + 1; j < arr.length; j++) {
+            let jSortedValue = wordFilter(arr[j]);
+            if (
+              hashSort.length == jSortedValue.length &&
+              jSortedValue == jSortedValue
+            ) {
+              finRes.push(arr[j]);
+              arr.splice(j, 1);
+              j--;
+            }
+          }
+          resultArr.push(finRes);
+        }
+        return resultArr;
+      }
+
+      console.log(anagramsArray());
+
+      function wordFilter(word) {
+        let x = word.split("");
+        for (let i = 0; i < x.length; i++) {
+          for (let j = i; j < x.length; j++) {
+            if (x[i] > x[j]) {
+              let temp = x[i];
+              x[i] = x[j];
+              x[j] = temp;
+            }
+          }
+        }
+        return x.join("");
+      }
+    </script>
+  </body>
+</html>
